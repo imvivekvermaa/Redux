@@ -1,0 +1,37 @@
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { store } from './store/store'
+import { userdelete } from './store/reducers/userReducer'
+
+function App() {
+  const {users}= useSelector((state)=> state.userReducer)
+  const dispatch= useDispatch()
+  // console.log(users)
+
+  const deleteUserHandler= (index)=>{
+    console.log(id)
+    dispatch(userdelete(index))
+  }
+
+  return (
+
+    <div className='m-auto container p-10 mt-5 bg-red-100'>
+      <h1 className=' text-2xl font-bold text-red-900'>
+        User List
+      </h1>
+      <ul>
+        {users.map((item, index)=>{
+          return(
+            <li key={index}>
+            <h1>{item.name} <span onClick={()=> deleteUserHandler(index)} className='font-bold text-red-500 cursor-pointer'>X</span></h1>
+          </li>
+          )})}
+      </ul>
+    </div>
+  )
+}
+
+export default App
