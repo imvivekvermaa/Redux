@@ -1,37 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { store } from './store/store'
-import { userdelete } from './store/reducers/userReducer'
+import React from "react";
+import { Link, NavLink, Route, Routes } from "react-router-dom";
+import Home from "./components/Home";
+import Products from "./components/Products";
+import Users from "./components/Users";
 
 function App() {
-  const {users}= useSelector((state)=> state.userReducer)
-  const dispatch= useDispatch()
-  // console.log(users)
-
-  const deleteUserHandler= (index)=>{
-    console.log(id)
-    dispatch(userdelete(index))
-  }
-
   return (
-
-    <div className='m-auto container p-10 mt-5 bg-red-100'>
-      <h1 className=' text-2xl font-bold text-red-900'>
-        User List
-      </h1>
-      <ul>
-        {users.map((item, index)=>{
-          return(
-            <li key={index}>
-            <h1>{item.name} <span onClick={()=> deleteUserHandler(index)} className='font-bold text-red-500 cursor-pointer'>X</span></h1>
-          </li>
-          )})}
-      </ul>
+    <div className="w-screen h-screen">
+      <nav className="pt-5 flex justify-center gap-10">
+        <NavLink className="/">Home</NavLink>
+        <NavLink to="/Users">Users</NavLink>
+        <NavLink to="/Products">Products</NavLink>
+      </nav>
+      <hr />
+      <Routes>
+        <Route path="/" element={<Home/>}></Route>
+        <Route path="/users" element={<Users/>}></Route>
+        <Route path="/products" element={<Products/>}></Route>
+      </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

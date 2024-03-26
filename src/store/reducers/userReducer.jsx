@@ -24,28 +24,24 @@ const initialState = {
 // extraReducers: An optional callback function used to add more reducers.
 // reducerPath: A preference for the slice reducer’s location (used by combineSlices and slice.selectors).
 
-
 // A Slice!
 export const UserSlice = createSlice({
-// Giving the name to mentioned state so we later down in the reducers can use it with this name.
+  // Giving the name to mentioned state so we later down in the reducers can use it with this name.
   name: "users",
-//   mentioning the initialstate of this slice to create reducers in this specific slice
+  //   mentioning the initialstate of this slice to create reducers in this specific slice
   initialState,
 
-//for above given "state", here we can make as many/different reducers as we want
-//and reducers are make inside a slice "createSlice hook basically, which is provided by redux-toolkit"   
+  //for above given "state", here we can make as many/different reducers as we want
+  //and reducers are make inside a slice "createSlice hook basically, which is provided by redux-toolkit"
   reducers: {
     //actions will be pass here
-    userdelete: (state, action)=>{
-        console.log(action.payload)
-        state.users.splice(action.payload,1)
-
-    }
+    userdelete: (state, action) => {
+      console.log(action.payload);
+      state.users.splice(action.payload, 1);
+    },
   },
 });
 
-
 export default UserSlice.reducer;
 
-
-export const {userdelete} =UserSlice.actions
+export const { userdelete } = UserSlice.actions;
